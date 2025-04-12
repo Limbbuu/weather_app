@@ -13,7 +13,7 @@
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #fff;
+      background: linear-gradient(90deg, #404688, #81c3b3) ;
       margin: 0;
       padding: 0;
     }
@@ -26,6 +26,9 @@
     main {
       padding: 40px 15px;
     }
+    .form-label {
+      color: white;
+    }
     .weather-container {
       max-width: 600px;
       margin: 0 auto;
@@ -34,6 +37,14 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border: none;
     }
+    .card-body{
+      margin: 0 auto;
+    }
+    h6 {
+      margin: 0 auto;
+      margin-bottom: 5px;
+    }
+  
   </style>
 </head>
 <body>
@@ -44,13 +55,48 @@
 
   <!-- Sivun pääsisältö -->
   <main>
+
+    <div class="mb-3">
+      <label for="locationSelect" class="form-label">Valitse paikkakunta:</label>
+      <select id="locationSelect" class="form-select mb-2">
+        <option value="">-- Valitse --</option>
+        <option value="62.2742,21.3759">Kristiinankaupunki</option>
+        <option value="63.1066,21.5919">Vaasa</option>
+        <option value="60.1699,24.9384">Helsinki</option>
+        <option value="61.4978,23.7600">Tampere</option>
+        <option value="60.4518,22.2666">Turku</option>
+      </select>
+    
+      <label for="latitude" class="form-label">Tai syötä koordinaatit:</label>
+      <input type="number" id="latitude" class="form-control mb-2" placeholder="Leveysaste (latitude)">
+      <input type="number" id="longitude" class="form-control mb-2" placeholder="Pituusaste (longitude)">
+      <button id="getWeatherBtn" class="btn btn-success mb-3">
+        <i class="fa-solid fa-cloud-sun"></i> Hae sää
+      </button>
+    </div>
+    
     <div class="weather-container">
+      <button id="refreshBtn" class="btn btn-primary mb-3">
+        <i class="fa-solid fa-rotate-right"></i> Päivitä säätiedot
+      </button>
+      
       <div id="weather" class="card weather-card">
         <div class="card-body text-center">
           <h5 class="card-title">Nykyiset säätiedot</h5>
           <p class="card-text">Ladataan säätietoja...</p>
         </div>
       </div>
+
+      <small>
+        <em>
+          <span style="color:white">UV-indeksin värit: </span> 
+          <span style="color:rgb(0, 181, 0);">Matala</span>, 
+          <span style="color:orange;">Kohtalainen</span>, 
+          <span style="color:rgb(192, 51, 0);">Korkea</span>, 
+          <span style="color:rgb(147, 0, 0);">Erittäin korkea</span>, 
+          <span style="color:rgb(118, 0, 118);">Äärimmäinen</span>
+        </em>
+      </small>
     </div>
   </main>
 
