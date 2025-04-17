@@ -63,7 +63,7 @@ async function fetchWeather(lat = 63.1066, lon = 21.5919) {
                 uvColor = "purple"; // äärimmäinen
             }
         }
-        //lokalstorage, näyttää viimeisimmän lämpötilan
+        //lokalstorage, tallentaa viimeisimmän lämpötilan
         localStorage.setItem('latestTemperature', weather.temperature);
 
         // Haetaan säätä kuvaava symboli
@@ -99,7 +99,9 @@ async function fetchWeather(lat = 63.1066, lon = 21.5919) {
  
          for (let i = startIndex; i < startIndex + 5; i++) {
              if (i >= hourlyTime.length) break;
-             const hour = new Date(hourlyTime[i]).getHours();
+             const hourUTC = new Date(hourlyTime[i]);
+             hourUTC.setHours(hourUTC.getHours() + 3);
+             const hour = hourUTC.getHours(); 
              const temp = hourlyTemp[i];
              const code = hourlyCode[i];
              const icon = getWeatherIcon(code);
